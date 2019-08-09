@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+</head>
+<body>
+  <form action="/new" method="post" enctype="multipart/form-data">
+    <p>名前:<input type="text" name="user_name"></p>
+    <p>本文:<input type="text" name="body"></p>
+    <p><input type="file" name="file"></p>
+    <input type="submit" value="投稿">
+  </form>
+
+  <ul>
+    <% @contents.each do |content| %>
+    <li>
+      <p><%= content.name %></p>
+      <p><%= content.body %></p>
+      <% unless content.img.empty? %>
+        <p><img src="<%= content.img %>"></p>
+      <% end %>
+      <span><%= content.good %></span>
+      <span>
+        <form action="/good/<%= content.id %>" method="post">
+          <input type="submit" value="いいね">
+        </form>
+      </span>
+      <span>
+        <form action="/delete/<%= content.id %>" method="post">
+          <input type="submit" value="削除">
+        </form>
+      </span>
+      <span>
+        <form action="/edit/<%= content.id %>" method="post">
+          <input type="submit" value="編集">
+        </form>
+      </span>
+    </li>
+    <% end %>
+  </ul>
+</body>
+</html>

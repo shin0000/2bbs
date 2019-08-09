@@ -1,0 +1,9 @@
+.bundle/
+vendor/bundle
+
+
+.ruby-version
+
+*.db
+.DS_Store
+.env
